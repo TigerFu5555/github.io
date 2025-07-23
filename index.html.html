@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>强者思维破局自测手册</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        :root {
+            --primary: #3a0ca3;
+            --secondary: #4361ee;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #ffd166;
+            --danger: #ef476f;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--light);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(58,12,163,0.2) 0%, rgba(26,26,46,0) 70%);
+            z-index: -1;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #f72585, #4cc9f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #a9a9b8;
+        }
+        
+        .tagline {
+            display: inline-block;
+            background: rgba(247, 37, 133, 0.15);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            color: #ff7eb9;
+        }
+        
+        .progress-container {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .progress-bar {
+            flex: 1;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 0 15px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--success));
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 5px;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-title i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            background: var(--primary);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .section-title h2 {
+            font-size: 1.4rem;
+            color: #e0e0ff;
+        }
+        
+        .question {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(26, 26, 46, 0.5);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .question:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .question h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        
+        @media (min-width: 768px) {
+            .options {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .option {
+            padding: 15px;
+            background: rgba(67, 97, 238, 0.1);
+            border: 2px solid rgba(67, 97, 238, 0.3);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .option:hover {
+            background: rgba(67, 97, 238, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .option.selected {
+            background: rgba(67, 97, 238, 0.3);
+            border-color: #4361ee;
+            box-shadow: 0 0 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .option::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: #4361ee;
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s ease;
+        }
+        
+        .option.selected::before {
+            transform: scaleY(1);
+        }
+        
+        .option-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option-label .letter {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .option.selected .option-label .letter {
+            background: var(--secondary);
+        }
+        
+        .result-container {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .result-type {
+            font-size: 2.2rem;
+            margin: 20px 0;
+            padding: 10px 30px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+        
+        .prisoner {
+            background: linear-gradient(90deg, #ef476f, #f78c6b);
+        }
+        
+        .breaker {
+            background: linear-gradient(90deg, #06d6a0, #4cc9f0);
+        }
+        
+        .master {
+            background: linear-gradient(90deg, #7209b7, #3a0ca3);
+        }
+        
+        .result-details {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: left;
+            margin: 30px 0;
+        }
+        
+        .result-details h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #e0e0ff;
+        }
+        
+        .result-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+            margin: 10px;
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #a9a9b8;
+        }
+        
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 15px 0;
+            background: linear-gradient(90deg, #ff9e00, #ffd166);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .features {
+            text-align: left;
+            margin: 20px 0;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        
+        .feature i {
+            color: #4cc9f0;
+            margin-right: 10px;
+            min-width: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(247, 37, 133, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(247, 37, 133, 0.6);
+        }
+        
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .footer-note {
+            font-size: 0.9rem;
+            color: #a9a9b8;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .counter {
+            font-size: 0.9rem;
+            color: #a9a9b8;
+            min-width: 80px;
+        }
+        
+        .start-container {
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .start-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            color: white;
+            padding: 18px 50px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.3rem;
+            margin: 30px 0;
+            box-shadow: 0 10px 25px rgba(247, 37, 133, 0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .start-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(247, 37, 133, 0.7);
+        }
+        
+        .intro {
+            margin-bottom: 30px;
+            line-height: 1.8;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 20px;
+        }
+        
+        .intro h2 {
+            color: #f72585;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .intro ul {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+        
+        .intro li {
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 600px) {
+            .options {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .result-type {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>强者思维破局自测手册</h1>
+            <p class="subtitle">3分钟定位困局层级，解锁你的王者作战图</p>
+            <span class="tagline">#测试即疗愈 #所有答案都是前进的路标</span>
+        </header>
+        
+        <div id="start-container" class="start-container">
+            <div class="intro">
+                <h2><i class="fas fa-lightbulb"></i> 测试说明</h2>
+                <p>通过12道精心设计的场景选择题，本测试将帮助您：</p>
+                <ul>
+                    <li>精准定位当前思维层级（囚徒/破局者/操盘手）</li>
+                    <li>识别阻碍发展的核心瓶颈</li>
+                    <li>获取个性化突破方案</li>
+                    <li>解锁专属成长路径</li>
+                </ul>
+                <p>完成测试约需3分钟，请根据第一直觉选择答案</p>
+            </div>
+            <div class="start-btn" id="start-btn">
+                <i class="fas fa-play"></i> 开始测试
+            </div>
+            <div class="tagline">
+                已有 8,742 人通过此测试找到突破路径
+            </div>
+        </div>
+        
+        <div id="test-container" style="display:none">
+            <div class="progress-container">
+                <div class="counter">问题 <span id="current">1</span>/12</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress"></div>
+                </div>
+            </div>
+            
+            <div id="question-container">
+                <!-- 问题将通过JS动态生成 -->
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-secondary" id="prev-btn" disabled>
+                    <i class="fas fa-arrow-left"></i> 上一题
+                </button>
+                <button class="btn btn-primary" id="next-btn">
+                    下一题 <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div id="result-container" class="result-container">
+            <div class="section">
+                <h2 class="result-type" id="result-title">囚徒型思维</h2>
+                <div class="result-details">
+                    <h3><i class="fas fa-lock"></i> 生存状态</h3>
+                    <p id="state-desc">用时间换生存，陷在"努力-疲惫"循环</p>
+                    
+                    <h3><i class="fas fa-shield-alt"></i> 核心枷锁</h3>
+                    <p id="lock-desc">消费者思维+线性能力依赖</p>
+                    
+                    <h3><i class="fas fa-key"></i> 破局钥匙</h3>
+                    <p id="solution-desc">立即解锁认知破局急救包</p>
+                </div>
+                
+                <div class="result-stats">
+                    <div class="stat">
+                        <div class="stat-value" id="a-count">0</div>
+                        <div class="stat-label">囚徒选项</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="b-count">0</div>
+                        <div class="stat-label">破局选项</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="c-count">0</div>
+                        <div class="stat-label">操盘选项</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <h3 class="product-title" id="product-name">《认知破局急救包》</h3>
+                    <div class="product-price" id="product-price">¥59.9</div>
+                    
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span id="feature1">3天认知突围音频课（含「能量守恒」行动表）</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span id="feature2">《强者决策树模板》PDF（破解选择困局）</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span id="feature3">限时赠《潜意识枷锁解除指南》</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="cta-button" id="cta-btn">立即解锁破局钥匙</a>
+                    
+                    <div class="qr-code">
+                        <img src="https://github.com/TigerFu5555/qrcode-images/blob/main/%E7%A6%8F%E5%B0%8F%E8%99%8E.png?raw=true" alt="解锁二维码">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-note">
+                <p><strong>专属福利：</strong> 添加助理 @福小虎 发送测试结果截图，额外赠送《高能晨间仪式清单》</p>
+                <p style="margin-top: 10px; color: #ffd166; font-weight: bold;">
+                    <i class="fas fa-gift"></i> 限时福利：前50名领取赠品者可获1v1咨询资格
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 问题数据
+        const questions = [
+            {
+                section: "认知定位（测生存维度）",
+                icon: "fas fa-brain",
+                q: "面对同事升职加薪，你第一反应是？",
+                options: [
+                    {text: "“他肯定靠关系/运气”", type: "A"},
+                    {text: "“分析他做对了什么”", type: "B"},
+                    {text: "“如何让他为我所用”", type: "C"}
+                ]
+            },
+            {
+                section: "认知定位（测生存维度）",
+                icon: "fas fa-brain",
+                q: "行业突发变革（如AI冲击），你会？",
+                options: [
+                    {text: "“等别人试错再跟进”", type: "A"},
+                    {text: "“立即学习并分享经验”", type: "B"},
+                    {text: "“投资相关团队布局”", type: "C"}
+                ]
+            },
+            {
+                section: "认知定位（测生存维度）",
+                icon: "fas fa-brain",
+                q: "遭遇项目失败时，你常想？",
+                options: [
+                    {text: "“我天生不是这块料”", type: "A"},
+                    {text: "“下次如何优化流程”", type: "B"},
+                    {text: "“失败数据也是资产”", type: "C"}
+                ]
+            },
+            {
+                section: "能力扫描（测创富武器）",
+                icon: "fas fa-bolt",
+                q: "需要说服客户时，你优先？",
+                options: [
+                    {text: "强调产品优势", type: "A"},
+                    {text: "问：“您最想解决什么？”", type: "B"},
+                    {text: "展示同行成果案例", type: "C"}
+                ]
+            },
+            {
+                section: "能力扫描（测创富武器）",
+                icon: "fas fa-bolt",
+                q: "直播在线人数暴跌，你立即？",
+                options: [
+                    {text: "更卖力讲解产品", type: "A"},
+                    {text: "发起投票：“想听A干货还是B福利？”", type: "B"},
+                    {text: "连麦观众：“您刚为何留下？”", type: "C"}
+                ]
+            },
+            {
+                section: "能力扫描（测创富武器）",
+                icon: "fas fa-bolt",
+                q: "团队执行力低下，你首先？",
+                options: [
+                    {text: "亲自重做关键部分", type: "A"},
+                    {text: "召开复盘会找卡点", type: "B"},
+                    {text: "设计自动追踪系统", type: "C"}
+                ]
+            },
+            {
+                section: "信念解码（测潜意识枷锁）",
+                icon: "fas fa-unlock",
+                q: "想到“赚钱很难”，你认为主因是？",
+                options: [
+                    {text: "大环境差/没资源", type: "A"},
+                    {text: "能力未匹配机会", type: "B"},
+                    {text: "价值传递效率低", type: "C"}
+                ]
+            },
+            {
+                section: "信念解码（测潜意识枷锁）",
+                icon: "fas fa-unlock",
+                q: "看到他人成功，你常感到？",
+                options: [
+                    {text: "“我不配拥有这些”", type: "A"},
+                    {text: "“他能行，我也可以”", type: "B"},
+                    {text: "“我们的合作点在哪？”", type: "C"}
+                ]
+            },
+            {
+                section: "信念解码（测潜意识枷锁）",
+                icon: "fas fa-unlock",
+                q: "被批评时，你的本能是？",
+                options: [
+                    {text: "辩解/找对方问题", type: "A"},
+                    {text: "追问：“具体哪点可改进？”", type: "B"},
+                    {text: "思考：“这能否优化产品？”", type: "C"}
+                ]
+            },
+            {
+                section: "行动模式（测破局速度）",
+                icon: "fas fa-tachometer-alt",
+                q: "每天睡前1小时，你通常？",
+                options: [
+                    {text: "刷短视频/追剧", type: "A"},
+                    {text: "规划明日三件要事", type: "B"},
+                    {text: "链接某个目标人脉", type: "C"}
+                ]
+            },
+            {
+                section: "行动模式（测破局速度）",
+                icon: "fas fa-tachometer-alt",
+                q: "发现新趋势机会，你多久行动？",
+                options: [
+                    {text: "观望≥1个月", type: "A"},
+                    {text: "1周内学习并测试", type: "B"},
+                    {text: "48小时内组局推进", type: "C"}
+                ]
+            },
+            {
+                section: "行动模式（测破局速度）",
+                icon: "fas fa-tachometer-alt",
+                q: "对于知识付费，你倾向？",
+                options: [
+                    {text: "“都是割韭菜”", type: "A"},
+                    {text: "“选1-2门解决当前问题”", type: "B"},
+                    {text: "“系统投资认知基建”", type: "C"}
+                ]
+            }
+        ];
+
+        // 状态变量
+        let currentQuestion = 0;
+        let answers = Array(questions.length).fill(null);
+        let counts = {A: 0, B: 0, C: 0};
+        
+        // 结果配置
+        const resultConfig = {
+            prisoner: {
+                title: "囚徒型思维",
+                state: "用时间换生存，陷在'努力-疲惫'循环",
+                lock: "消费者思维+线性能力依赖",
+                solution: "立即解锁认知破局急救包",
+                product: "《认知破局急救包》",
+                price: "¥59.9",
+                features: [
+                    "3天认知突围音频课（含「能量守恒」行动表）",
+                    "《强者决策树模板》PDF（破解选择困局）",
+                    "限时赠《潜意识枷锁解除指南》"
+                ],
+                cta: "立即解锁破局钥匙",
+                url: "https://sj27259238-101.m.365hjy.com/#/pages/entry/share?o=modal&type=38&id=0102"
+            },
+            breaker: {
+                title: "破局者思维",
+                state: "已用上杠杆，但系统化不足",
+                lock: "能力未产品化+缺乏生态位",
+                solution: "立即构建能力基建",
+                product: "《能力基建营》",
+                price: "¥999",
+                features: [
+                    "福临「化功大法」练习表（知识→智慧转化器）",
+                    "《生态位定位指南》+高价值技能图谱",
+                    "限时开放课程分佣资格（最高50%）"
+                ],
+                cta: "抢占进阶席位",
+                url: "https://sj27259238-101.m.365hjy.com/#/pages/entry/share?o=modal&type=38&id=0103"
+            },
+            master: {
+                title: "操盘手思维",
+                state: "资源整合者，需突破圈层天花板",
+                lock: "生态位升级+高密度资源",
+                solution: "立即进入高维圈层",
+                product: "《窄门大使计划》",
+                price: "¥4980",
+                features: [
+                    "《流量裂变作战图》（含直播SOP）",
+                    "高密度资源对接（每月3次）",
+                    "预约1v1通道（限每日3位）"
+                ],
+                cta: "激活合伙人权益",
+                url: "https://sj27259238-101.m.365hjy.com/#/pages/entry/share?o=modal&type=38&id=0104"
+            }
+        };
+        
+        // DOM元素
+        const startContainer = document.getElementById('start-container');
+        const testContainer = document.getElementById('test-container');
+        const startBtn = document.getElementById('start-btn');
+        const questionContainer = document.getElementById('question-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const currentEl = document.getElementById('current');
+        const progressEl = document.getElementById('progress');
+        const resultContainer = document.getElementById('result-container');
+        
+        // 初始化
+        function init() {
+            setupEventListeners();
+        }
+        
+        // 开始测试
+        function startTest() {
+            startContainer.style.display = 'none';
+            testContainer.style.display = 'block';
+            renderQuestion();
+            updateProgress();
+        }
+        
+        // 渲染当前问题
+        function renderQuestion() {
+            const q = questions[currentQuestion];
+            
+            let optionsHTML = '';
+            q.options.forEach((option, index) => {
+                const letter = String.fromCharCode(65 + index); // A, B, C
+                const isSelected = answers[currentQuestion] === index;
+                
+                optionsHTML += `
+                    <div class="option ${isSelected ? 'selected' : ''}" data-index="${index}">
+                        <div class="option-label">
+                            <span class="letter">${letter}</span>
+                            <span class="type">${option.type}型选择</span>
+                        </div>
+                        <div class="option-text">${option.text}</div>
+                    </div>
+                `;
+            });
+            
+            questionContainer.innerHTML = `
+                <div class="section">
+                    <div class="section-title">
+                        <i class="${q.icon}"></i>
+                        <h2>${q.section}</h2>
+                    </div>
+                    <div class="question">
+                        <h3>${currentQuestion + 1}. ${q.q}</h3>
+                        <div class="options">
+                            ${optionsHTML}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // 添加选项事件监听
+            document.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', () => {
+                    const selectedIndex = parseInt(option.dataset.index);
+                    answers[currentQuestion] = selectedIndex;
+                    renderQuestion();
+                });
+            });
+            
+            // 更新当前问题指示器
+            currentEl.textContent = currentQuestion + 1;
+            
+            // 更新按钮状态
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.textContent = currentQuestion === questions.length - 1 ? "查看结果" : "下一题";
+        }
+        
+        // 更新进度条
+        function updateProgress() {
+            const answeredCount = answers.filter(a => a !== null).length;
+            const progress = (answeredCount / questions.length) * 100;
+            progressEl.style.width = `${progress}%`;
+        }
+        
+        // 设置事件监听
+        function setupEventListeners() {
+            startBtn.addEventListener('click', startTest);
+            
+            prevBtn.addEventListener('click', () => {
+                if (currentQuestion > 0) {
+                    currentQuestion--;
+                    renderQuestion();
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                if (answers[currentQuestion] === null) {
+                    alert('请选择答案后再继续');
+                    return;
+                }
+                
+                if (currentQuestion < questions.length - 1) {
+                    currentQuestion++;
+                    renderQuestion();
+                } else {
+                    calculateResults();
+                    showResults();
+                }
+            });
+        }
+        
+        // 计算结果
+        function calculateResults() {
+            counts = {A: 0, B: 0, C: 0};
+            
+            answers.forEach((ansIndex, qIndex) => {
+                if (ansIndex !== null) {
+                    const type = questions[qIndex].options[ansIndex].type;
+                    counts[type]++;
+                }
+            });
+        }
+        
+        // 显示结果
+        function showResults() {
+            // 隐藏测试容器
+            testContainer.style.display = 'none';
+            
+            // 确定结果类型
+            let resultType;
+            if (counts.C >= 5) {
+                resultType = 'master';
+            } else if (counts.B >= 5) {
+                resultType = 'breaker';
+            } else {
+                resultType = 'prisoner';
+            }
+            
+            const result = resultConfig[resultType];
+            
+            // 更新结果界面
+            document.getElementById('result-title').textContent = result.title;
+            document.getElementById('state-desc').textContent = result.state;
+            document.getElementById('lock-desc').textContent = result.lock;
+            document.getElementById('solution-desc').textContent = result.solution;
+            
+            document.getElementById('a-count').textContent = counts.A;
+            document.getElementById('b-count').textContent = counts.B;
+            document.getElementById('c-count').textContent = counts.C;
+            
+            document.getElementById('product-name').textContent = result.product;
+            document.getElementById('product-price').textContent = result.price;
+            document.getElementById('feature1').textContent = result.features[0];
+            document.getElementById('feature2').textContent = result.features[1];
+            document.getElementById('feature3').textContent = result.features[2];
+            document.getElementById('cta-btn').textContent = result.cta;
+            document.getElementById('cta-btn').href = result.url;
+            
+            // 添加结果页的类名
+            const resultTitle = document.getElementById('result-title');
+            resultTitle.className = 'result-type';
+            resultTitle.classList.add(
+                resultType === 'prisoner' ? 'prisoner' : 
+                resultType === 'breaker' ? 'breaker' : 'master'
+            );
+            
+            // 显示结果容器
+            resultContainer.style.display = 'block';
+            
+            // 滚动到结果部分
+            resultContainer.scrollIntoView({behavior: 'smooth'});
+        }
+        
+        // 启动
+        init();
+    </script>
+</body>
+</html>
